@@ -40,7 +40,6 @@ void Jugador::setApuestas()
 		}
 		fichero.close();
 	}
-
 }
 
 void mostrarLista(list <Apuesta> apuestas)
