@@ -18,7 +18,8 @@ char *stringToChar(string aux1){
 	return aux2;
 }
 //CONSTRUCTOR DE LA CLASE RULETA
-Ruleta::Ruleta(Crupier crupier1){
+Ruleta::Ruleta(Crupier crupier1):crupier_(crupier1){
+	srand(time(NULL));
 	setCrupier(crupier1);
 	bola_=-1;
 	banca_=1000000;
@@ -27,7 +28,7 @@ Ruleta::Ruleta(Crupier crupier1){
 bool Ruleta::setBanca(int banca){
 	if(banca<=0)
 	{
-		cout << "El valor de banca debe ser positivo. No se ha actualizado el valor de banca. Abortando programa." << endl;
+		cout << "El valor de banca debe ser positivo. No se ha actualizado el valor de banca." << endl;
 		return false;
 	}
 	else
@@ -47,7 +48,7 @@ bool Ruleta::setBola(int bola){
 	else
 	{
 		bola_=bola;
-		cout << "El valor de la bola se ha actualizado correctamente." << endl;
+		//cout << "El valor de la bola se ha actualizado correctamente." << endl;
 		return true;
 	}
 }
@@ -77,7 +78,7 @@ int Ruleta::deleteJugador(Jugador j){
 	if(jugadores_.empty())
 	{
 		cout << "La lista está vacía." << endl;
-		return -2;
+		return -1;
 	}
 	for(i=jugadores_.begin() ; i!=jugadores_.end() ; ++i)
 	{
@@ -88,8 +89,8 @@ int Ruleta::deleteJugador(Jugador j){
 			return 1;
 		}
 	}
-	cout << "El jugador " << (*i).getNombre() << " con DNI " << (*i).getDNI() << " no se encuentra en la lista." << endl;
-	return -1;
+	cout << "El jugador " << j.getNombre() << " con DNI " << j.getDNI() << " no se encuentra en la lista." << endl;
+	return -2;
 }
 //FUNCION QUE SE LE PASA UN DNI Y BORRA EL JUGADOR DE LA LISTA. SI LA LISTA ESTÁ VACÍA DEVUELVE -2, SI EL JUGADOR NO ESTÁ EN LA LISTA -1, Y SI ESTÁ 1.
 int Ruleta::deleteJugador(string DNI){
@@ -97,7 +98,7 @@ int Ruleta::deleteJugador(string DNI){
 	if(jugadores_.empty())
 	{
 		cout << "La lista está vacía." << endl;
-		return -2;
+		return -1;
 	}
 	for(i=jugadores_.begin() ; i!=jugadores_.end() ; ++i)
 	{
@@ -108,8 +109,8 @@ int Ruleta::deleteJugador(string DNI){
 			return 1;
 		}
 	}
-	cout << "El jugador " << (*i).getNombre() << " con DNI " << (*i).getDNI() << " no se encuentra en la lista." << endl;
-	return -1;
+	cout << "El jugador con DNI " << DNI << " no se encuentra en la lista." << endl;
+	return -2;
 }
 //FUNCION QUE ABRE EL ARCHIVO jugadores.txt BORRA LO QUE TIENE DENTRO Y LO RELLENA CON LO QUE HAY EN LA LISTA DE JUGADORES.
 void Ruleta::escribeJugadores(){
@@ -200,7 +201,7 @@ void Ruleta::giraRuleta(){
 	do
 	{
 		aux=rand()%37;
-	}while(setBola(aux)); //En caso de que no se haya guardado un valor correcto, volvería a intentarlo.
+	}while(!setBola(aux)); //En caso de que no se haya guardado un valor correcto, volvería a intentarlo.
 }
 //FUNCION QUE ASIGNA LOS PREMIOS, UN FOLLÓN TOTAL, MIRAR LA DOCUMENTACIÓN QUE HAY EN LA PROPIA FUNCIÓN.
 void Ruleta::getPremios(){
