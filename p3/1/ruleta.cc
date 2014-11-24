@@ -189,7 +189,7 @@ int Ruleta::getType(string opcion){
 //FUNCION QUE DEVUELVE TRUE SI LA BOLA ES ROJA Y FALSE SI LA BOLA ES NEGRA.
 bool Ruleta::checkColour(){
 	int aux=getBola();
-	if(aux==1 || aux==3 || aux==5 || aux==7 || aux==9 || aux==10 || aux==14 || aux==16 || aux==18 || aux==19 || aux==21 || aux==23 || aux==25 || aux==27 || aux==30 || aux==32 || aux==34 || aux==36)
+	if(aux==1 || aux==3 || aux==5 || aux==7 || aux==9 || aux==12 || aux==14 || aux==16 || aux==18 || aux==19 || aux==21 || aux==23 || aux==25 || aux==27 || aux==30 || aux==32 || aux==34 || aux==36)
 		return true;
 	else
 		return false;	
@@ -224,7 +224,7 @@ void Ruleta::getPremios(){
 						{
 							fichero.getline(linea,256);
 							if(setBanca(getBanca()-atoi(linea)*35)) //...se le retira el dinero a la banca (apuesta * 35)...
-								(*i).setDinero((*i).getDinero()+atoi(linea)*34); //...y se le añade al jugador. (Multiplicamos por 34 porque no se le quitamos al hacer la apuesta dinero.)
+								(*i).setDinero((*i).getDinero()+atoi(linea)*35); //...y se le añade al jugador.
 							else
 								exit(EXIT_FAILURE);
 						}
@@ -242,7 +242,7 @@ void Ruleta::getPremios(){
 						switch(getType(linea))
 						{
 							case 1: //Si devuelve 1, es que el jugador escogió rojo.
-								if(checkColour()) //Con checkColour comprobamos si la bola es roja, si lo es...
+								if(checkColour() && getBola()!=0) //Con checkColour comprobamos si la bola es roja, si lo es...
 								{
 									fichero.getline(linea,256);
 									if(setBanca(getBanca()-atoi(linea))) //...le quitamos el dinero a la banca...
@@ -260,7 +260,7 @@ void Ruleta::getPremios(){
 								}
 								break;
 							case 2: //Si devuelve 2, es que el jugador escogió negro.
-								if(checkColour()) //Con checkColour(2) comprobamos si la bola es negra, en este caso, si devuelve true...
+								if(checkColour() || getBola()==0) //Con checkColour comprobamos si la bola es negra, en este caso, si devuelve true...
 								{
 									fichero.getline(linea,256);
 									if(setBanca(getBanca()+atoi(linea))) //...dinerito para la banca...
@@ -289,7 +289,7 @@ void Ruleta::getPremios(){
 						switch(getType(linea)) //Si el jugador eligió par, getType devuelve 1, si fue impar, 2.
 						{
 							case 1: //Caso de que el jugador eligiera par.
-								if(getBola()%2==0) //Si resulta que la bola era par...
+								if(getBola()%2==0 && getBola()!=0) //Si resulta que la bola era par...
 								{
 									fichero.getline(linea,256);
 									if(setBanca(getBanca()-atoi(linea))) //...le quitamos el dinero a la banca...
@@ -354,7 +354,7 @@ void Ruleta::getPremios(){
 								}
 								break;
 							case 2: //Caso que elija bajo.
-								if(getBola()<19) //Si el jugador acertó porque la bola está entre 19 y 36...
+								if(getBola()<19 && getBola()!=0) //Si el jugador acertó porque la bola está entre 19 y 36...
 								{
 									fichero.getline(linea,256);
 									if(setBanca(getBanca()-atoi(linea))) //...le quitamos el dinero a la banca...
@@ -382,6 +382,7 @@ void Ruleta::getPremios(){
 						cout << "Error leyendo el tipo de apuesta." << endl;
 				}
 			}
+			fichero.close();
 		}
 		else
 		{
