@@ -73,6 +73,9 @@ void Ruleta::addJugador(Jugador j){
 }
 //FUNCION QUE SE LE PASA UN JUGADOR Y LO BORRA DE LA LISTA. SI LA LISTA ESTÁ VACÍA DEVUELVE -2, SI EL JUGADOR NO ESTÁ EN LA LISTA -1, Y SI ESTÁ 1.
 int Ruleta::deleteJugador(Jugador j){
+	
+	return deleteJugador(j.getDNI()); //Mucho más optimizado que lo de abajo. usamos la sobrecarga de funciones correctamente.
+	/*
 	list<Jugador>::iterator i;
 	string aux=j.getDNI();
 	if(jugadores_.empty())
@@ -90,7 +93,7 @@ int Ruleta::deleteJugador(Jugador j){
 		}
 	}
 	cout << "El jugador " << j.getNombre() << " con DNI " << j.getDNI() << " no se encuentra en la lista." << endl;
-	return -2;
+	return -2;*/
 }
 //FUNCION QUE SE LE PASA UN DNI Y BORRA EL JUGADOR DE LA LISTA. SI LA LISTA ESTÁ VACÍA DEVUELVE -2, SI EL JUGADOR NO ESTÁ EN LA LISTA -1, Y SI ESTÁ 1.
 int Ruleta::deleteJugador(string DNI){
@@ -102,7 +105,7 @@ int Ruleta::deleteJugador(string DNI){
 	}
 	for(i=jugadores_.begin() ; i!=jugadores_.end() ; ++i)
 	{
-		if(((*i).getDNI())==(DNI))
+		if(((*i).getDNI())==(DNI)) //También se puede poner i->getDNI() y nos ahorramos el follón de paréntesis.
 		{
 			jugadores_.erase(i);
 			cout << "Jugador " << (*i).getNombre() << " con DNI " << (*i).getDNI() << " borrado correctamente." << endl;
