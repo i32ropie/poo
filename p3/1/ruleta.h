@@ -1,13 +1,13 @@
 #ifndef _RULETA_H
 #define _RULETA_H
 
-#include "jugador.h"
-#include "crupier.h"
 #include <string>
 #include <list>
-#include <iostream>
+//#include <iostream>
+#include "jugador.h"
+#include "crupier.h"
 
-using namespace std;
+//using namespace std;
 
 class Ruleta
 {
