@@ -15,7 +15,7 @@ Persona::Persona(string DNI, string nombre, string apellidos, string direccion, 
 	setProvincia(provincia);
 	setPais(pais);
 }
-
+// Se podría hacer: Persona::Persona(string DNI, string nombre, string apellidos, string direccion, string localidad, string provincia, string pais):DNI_(DNI),nombre_(nombre),etc... poniendo variablePrivada(ParametroFuncion). <- Eso se pone detrás de ':'.
 string Persona::getApellidosyNombre()
 {
 	string a,b,c;
