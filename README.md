@@ -17,9 +17,9 @@ gitg is a simple application. You can commit changes and view the repositories i
 
 #Libros para programar con QT
 ##Curso de QT - Programación en C++ con Qt bajo Entorno GNU/Linux
-https://mega.co.nz/#!9lZ1yIxT!n4U7q8NeZjz1s8NPyCow37MLk6T40XdXDxNQ11K18Fc
+(enlace)[https://mega.co.nz/#!9lZ1yIxT!n4U7q8NeZjz1s8NPyCow37MLk6T40XdXDxNQ11K18Fc]
 ##4 libros en inglés de QT
-https://onedrive.live.com/?cid=2cf47d98aea9b806&id=2CF47D98AEA9B806!137
+(enlace)[https://onedrive.live.com/?cid=2cf47d98aea9b806&id=2CF47D98AEA9B806!137]
 
 
 
