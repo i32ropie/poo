@@ -77,7 +77,7 @@ crupier.o : crupier.cc crupier.h persona.cc persona.h
 
 jugador.o : jugador.cc jugador.h persona.cc persona.h
 # Añadido ruleta.o
-ruleta.o : ruleta.cc ruleta.h crupier.cc crupier.h jugador.cc jugador.h persona.cc persona.h
+ruleta.o : ruleta.cc ruleta.h persona.cc persona.h
 
 # Jugador principal (Main)
 
